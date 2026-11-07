@@ -1,0 +1,13 @@
+.preview-*.png
+.final-*.png
+.asset-*.png
+.new-*.png
+.release-*.png
+.edge-*/
+.edge-*.log
+.dom-dump.html
+.idb-dump.html
+.debug-*.html
+.desktop-build/
+release/
+$null

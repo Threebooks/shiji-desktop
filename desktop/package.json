@@ -1,0 +1,10 @@
+{
+  "name": "shiji-desktop",
+  "productName": "拾集",
+  "version": "1.2.14",
+  "description": "拾集 · 本地资源与 Minecraft 创作素材管理 Windows 桌面版",
+  "main": "main.js",
+  "private": true,
+  "author": "YinL.",
+  "license": "UNLICENSED"
+}

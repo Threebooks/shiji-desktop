@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f5f1" />
+    <meta
+      name="description"
+      content="拾集是一款本地资源与创作素材管理工具，统一整理文件索引、Minecraft 录制原片、可复用素材、视频项目和封面版本。"
+    />
+    <meta name="author" content="YinL." />
+    <link rel="icon" type="image/svg+xml" href="./assets/icon.svg" />
+    <link rel="stylesheet" href="./app.css?v=card-details-1.2.14" />
+    <title>拾集 · 第二测试版 1.2.14</title>
+  </head>
+  <body>
+    <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.5"></circle>
+        <path d="m16 16 4 4"></path>
+      </symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14"></path>
+      </symbol>
+      <symbol id="icon-library" viewBox="0 0 24 24">
+        <rect x="3.5" y="3.5" width="7" height="7" rx="1.8"></rect>
+        <rect x="13.5" y="3.5" width="7" height="7" rx="1.8"></rect>
+        <rect x="3.5" y="13.5" width="7" height="7" rx="1.8"></rect>
+        <rect x="13.5" y="13.5" width="7" height="7" rx="1.8"></rect>
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"></path>
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5"></circle>
+        <path d="M12 7.5V12l3 2"></path>
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <rect x="3.5" y="5" width="17" height="15.5" rx="2"></rect>
+        <path d="M7.5 3v4M16.5 3v4M3.5 9.5h17"></path>
+      </symbol>
+      <symbol id="icon-layers" viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5 9-5Z"></path>
+        <path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path>
+      </symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3v-.2h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"></path>
+      </symbol>
+      <symbol id="icon-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+      </symbol>
+      <symbol id="icon-moon" viewBox="0 0 24 24">
+        <path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"></path>
+      </symbol>
+      <symbol id="icon-link" viewBox="0 0 24 24">
+        <path d="m9.5 14.5 5-5"></path>
+        <path d="M7.3 17.7 5.6 19.4a3.3 3.3 0 0 1-4.7-4.7l3.5-3.5a3.3 3.3 0 0 1 4.7 0"></path>
+        <path d="m16.7 6.3 1.7-1.7a3.3 3.3 0 0 1 4.7 4.7l-3.5 3.5a3.3 3.3 0 0 1-4.7 0"></path>
+      </symbol>
+      <symbol id="icon-file" viewBox="0 0 24 24">
+        <path d="M6 2.8h8l4 4V21H6V2.8Z"></path>
+        <path d="M14 2.8V7h4M9 12h6M9 16h6"></path>
+      </symbol>
+      <symbol id="icon-note" viewBox="0 0 24 24">
+        <path d="M5 3.5h14v13l-4 4H5v-17Z"></path>
+        <path d="M15 20.5v-4h4M8.5 8h7M8.5 11.5h7M8.5 15h4"></path>
+      </symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+        <path d="m9 5 7 7-7 7"></path>
+      </symbol>
+      <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+        <path d="m15 5-7 7 7 7"></path>
+      </symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"></path>
+      </symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24">
+        <path d="m14.5 5.5 4 4M4 20l1-5L16.5 3.5a1.4 1.4 0 0 1 2 0l2 2a1.4 1.4 0 0 1 0 2L9 19l-5 1Z"></path>
+      </symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24">
+        <path d="M4 7h16M9 3.5h6L16 7H8l1-3.5ZM6.5 7l1 13h9l1-13M10 11v5M14 11v5"></path>
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path d="M5 5l14 14M19 5 5 19"></path>
+      </symbol>
+      <symbol id="icon-sort" viewBox="0 0 24 24">
+        <path d="M8 5v14m0 0-3-3m3 3 3-3M16 19V5m0 0-3 3m3-3 3 3"></path>
+      </symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24">
+        <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 20h16"></path>
+      </symbol>
+      <symbol id="icon-external" viewBox="0 0 24 24">
+        <path d="M13 4h7v7M20 4l-9 9M18 13v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6"></path>
+      </symbol>
+      <symbol id="icon-database" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5.5" rx="8" ry="3"></ellipse>
+        <path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path>
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 3 4.5 6v5.2c0 4.5 2.8 7.8 7.5 9.8 4.7-2 7.5-5.3 7.5-9.8V6L12 3Z"></path>
+        <path d="m8.5 12 2.3 2.3 4.7-4.6"></path>
+      </symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 10.5V17M12 7.2v.2"></path>
+      </symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24">
+        <path d="m5 12.5 4.2 4.2L19 7"></path>
+      </symbol>
+      <symbol id="icon-folder" viewBox="0 0 24 24">
+        <path d="M3 6.5h6l2 2h10v11H3v-13Z"></path>
+      </symbol>
+      <symbol id="icon-inbox" viewBox="0 0 24 24">
+        <path d="M4 4h16l2 12v4H2v-4L4 4Z"></path>
+        <path d="M2.5 15H8l1.5 2.5h5L16 15h5.5"></path>
+      </symbol>
+      <symbol id="icon-more" viewBox="0 0 24 24">
+        <circle cx="5" cy="12" r="1"></circle>
+        <circle cx="12" cy="12" r="1"></circle>
+        <circle cx="19" cy="12" r="1"></circle>
+      </symbol>
+      <symbol id="icon-keyboard" viewBox="0 0 24 24">
+        <rect x="2.5" y="5.5" width="19" height="13" rx="2"></rect>
+        <path d="M6 9h.1M10 9h.1M14 9h.1M18 9h.1M6 12.5h.1M10 12.5h.1M14 12.5h.1M18 12.5h.1M8 16h8"></path>
+      </symbol>
+      <symbol id="icon-monitor" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="13" rx="2"></rect>
+        <path d="M8 21h8M12 17v4"></path>
+      </symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="m10 8.5 5 3.5-5 3.5v-7Z"></path>
+      </symbol>
+      <symbol id="icon-play-fill" viewBox="0 0 24 24">
+        <path d="M8 5.2 19 12 8 18.8V5.2Z"></path>
+      </symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24">
+        <path d="M8 5h3v14H8V5ZM14 5h3v14h-3V5Z"></path>
+      </symbol>
+      <symbol id="icon-volume" viewBox="0 0 24 24">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+        <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.8 7.8 0 0 1 0 11"></path>
+      </symbol>
+      <symbol id="icon-volume-off" viewBox="0 0 24 24">
+        <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+        <path d="m16 9 5 6M21 9l-5 6"></path>
+      </symbol>
+      <symbol id="icon-fullscreen" viewBox="0 0 24 24">
+        <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"></path>
+      </symbol>
+      <symbol id="icon-cube" viewBox="0 0 24 24">
+        <path d="m12 2.8 8.5 4.7v9L12 21.2l-8.5-4.7v-9L12 2.8Z"></path>
+        <path d="m3.5 7.5 8.5 4.8 8.5-4.8M12 12.3v8.9"></path>
+      </symbol>
+      <symbol id="icon-key" viewBox="0 0 24 24">
+        <circle cx="8.2" cy="15.8" r="4.2"></circle>
+        <path d="m11.2 12.8 8.3-8.3M16 8l2 2M18 6l2 2"></path>
+      </symbol>
+      <symbol id="icon-eye" viewBox="0 0 24 24">
+        <path d="M2.8 12s3.4-6 9.2-6 9.2 6 9.2 6-3.4 6-9.2 6-9.2-6-9.2-6Z"></path>
+        <circle cx="12" cy="12" r="2.7"></circle>
+      </symbol>
+      <symbol id="icon-eye-off" viewBox="0 0 24 24">
+        <path d="M3 3l18 18M9.8 6.3A9.6 9.6 0 0 1 12 6c5.8 0 9.2 6 9.2 6a15 15 0 0 1-2 2.6M6.2 7.4A15.7 15.7 0 0 0 2.8 12s3.4 6 9.2 6c1 0 2-.2 2.8-.5M9.9 9.9a3 3 0 0 0 4.2 4.2"></path>
+      </symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24">
+        <rect x="8" y="8" width="12" height="12" rx="2"></rect>
+        <path d="M16 8V4H4v12h4"></path>
+      </symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24">
+        <path d="M20 7v5h-5M4 17v-5h5"></path>
+        <path d="M6.1 8A7.5 7.5 0 0 1 19.8 12M4.2 12A7.5 7.5 0 0 0 17.9 16"></path>
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M4.5 20c.8-4 3.3-6 7.5-6s6.7 2 7.5 6"></path>
+      </symbol>
+      <symbol id="icon-list" viewBox="0 0 24 24">
+        <path d="M9 6h11M9 12h11M9 18h11"></path>
+        <circle cx="4" cy="6" r=".8"></circle>
+        <circle cx="4" cy="12" r=".8"></circle>
+        <circle cx="4" cy="18" r=".8"></circle>
+      </symbol>
+      <symbol id="icon-gallery" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+        <circle cx="8" cy="9" r="1.5"></circle>
+        <path d="m4 17 5-5 3 3 3-4 5 6"></path>
+      </symbol>
+      <symbol id="icon-table" viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="16" rx="1.5"></rect>
+        <path d="M3 9h18M9 9v11M15 9v11M3 14.5h18"></path>
+      </symbol>
+    </svg>
+
+    <div class="app-shell">
+      <aside class="sidebar" id="app-sidebar" aria-label="主导航">
+        <button class="brand brand-button" type="button" data-action="open-author-profile" aria-label="查看作者介绍">
+          <div class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="brand-copy">
+            <strong>拾集</strong>
+            <span>本地资源与素材</span>
+          </div>
+        </button>
+
+        <button class="button-add-sidebar" data-action="add-resource" type="button">
+          <svg class="icon"><use href="#icon-plus"></use></svg>
+          <span>添加资源</span>
+          <kbd id="add-resource-shortcut">N</kbd>
+        </button>
+
+        <nav class="primary-nav">
+          <div class="nav-section">
+            <div class="nav-label-row">
+              <p class="nav-label">资料库</p>
+              <button class="sort-hint sort-hint-button" type="button" data-action="open-order-dialog">
+                <svg class="icon"><use href="#icon-sort"></use></svg>
+                <span>排序</span>
+              </button>
+            </div>
+            <div class="nav-section-items" id="library-nav-items">
+              <button class="nav-item is-active" data-view="all" type="button" draggable="true" title="拖动排序；按 Alt+↑/↓ 调整" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown">
+                <svg class="icon"><use href="#icon-library"></use></svg>
+                <span>全部资源</span>
+                <span class="nav-count" id="all-count">0</span>
+              </button>
+              <button class="nav-item" data-view="favorites" type="button" draggable="true" title="拖动排序；按 Alt+↑/↓ 调整" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown">
+                <svg class="icon"><use href="#icon-star"></use></svg>
+                <span>我的收藏</span>
+                <span class="nav-count" id="favorites-count">0</span>
+              </button>
+              <button class="nav-item" data-view="recent" type="button" draggable="true" title="拖动排序；按 Alt+↑/↓ 调整" aria-keyshortcuts="Alt+ArrowUp Alt+ArrowDown">
+                <svg class="icon"><use href="#icon-clock"></use></svg>
+                <span>最近打开</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-label-row">
+              <p class="nav-label">创作</p>
+            </div>
+            <div class="nav-section-items">
+              <button class="nav-item" data-view="studio" type="button">
+                <svg class="icon"><use href="#icon-monitor"></use></svg>
+                <span>素材库</span>
+                <span class="nav-count" id="studio-nav-count">0</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-label-row">
+              <p class="nav-label">专区</p>
+              <div class="nav-label-actions">
+                <button class="icon-button icon-button--small" type="button" data-action="create-library" aria-label="新建专区" title="新建专区">
+                  <svg class="icon"><use href="#icon-plus"></use></svg>
+                </button>
+                <button class="icon-button icon-button--small" type="button" data-action="manage-libraries" aria-label="管理专区" title="管理专区">
+                  <svg class="icon"><use href="#icon-settings"></use></svg>
+                </button>
+              </div>
+            </div>
+            <div class="nav-section-items" id="zone-nav-items">
+              <button class="nav-item" data-view="minecraft" type="button">
+                <svg class="icon"><use href="#icon-cube"></use></svg>
+                <span>我的世界</span>
+                <span class="nav-count" id="minecraft-count">0</span>
+              </button>
+              <div id="custom-library-nav"></div>
+            </div>
+          </div>
+
+          <div class="nav-section nav-section--account">
+            <div class="nav-label-row">
+              <p class="nav-label">账号</p>
+            </div>
+            <div class="nav-section-items">
+              <button class="nav-item" data-view="accounts" type="button">
+                <svg class="icon"><use href="#icon-key"></use></svg>
+                <span>账号保险箱</span>
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <div class="category-nav">
+          <div class="nav-label-row">
+            <p class="nav-label">分类</p>
+            <div class="nav-label-actions">
+              <button class="sort-hint sort-hint-button" type="button" data-action="open-order-dialog">
+                <svg class="icon"><use href="#icon-sort"></use></svg>
+                <span>排序</span>
+              </button>
+              <button class="icon-button icon-button--small" data-view="categories" type="button" aria-label="管理分类">
+                <svg class="icon"><use href="#icon-settings"></use></svg>
+              </button>
+            </div>
+          </div>
+          <div id="category-nav-list"></div>
+        </div>
+
+        <div class="sidebar-spacer"></div>
+
+        <div class="local-note">
+          <svg class="icon"><use href="#icon-shield"></use></svg>
+          <div>
+            <strong>仅保存在本机</strong>
+            <span>你的资源不会上传到服务器</span>
+          </div>
+        </div>
+
+        <button class="nav-item nav-item--subtle" data-view="settings" type="button">
+          <svg class="icon"><use href="#icon-settings"></use></svg>
+          <span>设置与备份</span>
+        </button>
+        <button class="nav-item" data-view="about" type="button">
+          <svg class="icon"><use href="#icon-info"></use></svg>
+          <span>关于拾集</span>
+        </button>
+        <div class="sidebar-author">拾集第二测试版 1.2.14 · 作者 <strong>YinL.</strong></div>
+      </aside>
+
+      <section class="main-shell">
+        <header class="topbar">
+          <label class="search-box" id="search-box">
+            <svg class="icon"><use href="#icon-search"></use></svg>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="搜索文件名、路径、标签或内容…"
+              autocomplete="off"
+              aria-label="搜索资源"
+            />
+            <kbd class="search-shortcut" id="search-shortcut">Ctrl K</kbd>
+          </label>
+
+          <div class="topbar-actions">
+            <button class="icon-button" id="theme-toggle" type="button" aria-label="切换深色模式" title="切换外观">
+              <svg class="icon theme-icon-light"><use href="#icon-moon"></use></svg>
+              <svg class="icon theme-icon-dark"><use href="#icon-sun"></use></svg>
+            </button>
+            <button class="button button--primary topbar-add" data-action="add-resource" type="button">
+              <svg class="icon"><use href="#icon-plus"></use></svg>
+              <span>添加资源</span>
+            </button>
+          </div>
+        </header>
+
+        <main class="content" id="content" tabindex="-1"></main>
+      </section>
+
+    </div>
+
+    <dialog class="modal" id="resource-dialog">
+      <form class="modal-card resource-form" id="resource-form" novalidate>
+        <header class="modal-header">
+          <div class="modal-header-main">
+            <div>
+              <p class="eyebrow">资源信息</p>
+              <h2 id="resource-dialog-title">添加资源</h2>
+            </div>
+          </div>
+          <div class="modal-header-actions">
+            <button class="icon-button modal-back-button" id="resource-editor-back" type="button" data-action="back-to-detail" aria-label="返回资源详情" hidden>
+              <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+            </button>
+            <button class="icon-button" data-close-dialog="resource-dialog" type="button" aria-label="关闭">
+              <svg class="icon"><use href="#icon-close"></use></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="modal-body">
+          <input type="hidden" name="resourceId" id="resource-id" />
+          <input type="hidden" name="resourceType" id="resource-type" value="link" />
+
+          <div class="type-switcher" role="group" aria-label="资源类型">
+            <button class="type-option is-active" type="button" data-resource-type="link">
+              <svg class="icon"><use href="#icon-link"></use></svg>
+              <span>链接</span>
+            </button>
+            <button class="type-option" type="button" data-resource-type="file">
+              <svg class="icon"><use href="#icon-file"></use></svg>
+              <span>文件</span>
+            </button>
+            <button class="type-option" type="button" data-resource-type="note">
+              <svg class="icon"><use href="#icon-note"></use></svg>
+              <span>笔记</span>
+            </button>
+            <button class="type-option type-option--password" type="button" data-open-password-vault title="账号密码将保存在账号保险箱">
+              <svg class="icon"><use href="#icon-key"></use></svg>
+              <span>密码</span>
+            </button>
+          </div>
+
+          <section class="first-resource-guide" id="first-resource-guide" hidden>
+            <span class="first-resource-guide-number">01</span>
+            <div>
+              <strong>创建你的第一条资源</strong>
+              <p>先填写名称，再选择链接、文件或笔记；最后选择分类并保存。</p>
+            </div>
+          </section>
+
+          <label class="field">
+            <span class="field-label">存放专区</span>
+            <select name="zone" id="resource-zone">
+              <option value="library">通用资源库</option>
+              <option value="minecraft">我的世界</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span class="field-label">名称 <em>*</em></span>
+            <input name="title" id="resource-title" type="text" placeholder="给这条资源起个容易找到的名字" maxlength="100" required />
+          </label>
+
+          <label class="field" data-field-for="link" id="url-field">
+            <span class="field-label">链接地址 <em>*</em></span>
+            <input name="url" id="resource-url" type="text" inputmode="url" placeholder="https://example.com" />
+          </label>
+
+          <div class="field" data-field-for="file" id="file-field" hidden>
+            <span class="field-label">文件 <em>*</em></span>
+            <label class="file-drop" id="file-drop" for="resource-file">
+              <input id="resource-file" name="file" type="file" />
+              <span class="file-drop-icon"><svg class="icon"><use href="#icon-upload"></use></svg></span>
+              <strong id="file-drop-title">拖入文件，或点击选择</strong>
+              <span id="file-drop-meta">桌面版只记录文件路径；网页版保存在浏览器中</span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="field-label" id="description-label">简介</span>
+            <textarea
+              name="description"
+              id="resource-description"
+              rows="4"
+              maxlength="1200"
+              placeholder="补充一些便于以后检索的信息"
+            ></textarea>
+            <span class="field-hint"><span id="description-hint">一句话说明用途</span><span id="description-count">0 / 1200</span></span>
+          </label>
+
+          <div class="field-row">
+            <div class="field">
+              <span class="field-label">记录日期</span>
+              <div class="date-picker" data-date-picker>
+                <input class="date-picker-native" name="date" id="resource-date" type="date" tabindex="-1" aria-hidden="true" />
+                <button class="date-picker-trigger" type="button" data-action="toggle-date-picker" aria-haspopup="dialog" aria-expanded="false" aria-label="选择记录日期">
+                  <span data-date-picker-label></span>
+                  <svg class="icon"><use href="#icon-calendar"></use></svg>
+                </button>
+                <div class="date-picker-panel" id="resource-date-panel" role="dialog" aria-label="选择记录日期" hidden></div>
+              </div>
+            </div>
+
+            <label class="field" id="minecraft-type-field" hidden>
+              <span class="field-label">Minecraft 类型</span>
+              <select id="minecraft-type">
+                <option value="map">地图</option>
+                <option value="shader">光影</option>
+                <option value="mod">模组</option>
+                <option value="resourcepack">材质包</option>
+                <option value="modpack">整合包</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field" id="resource-category-field">
+            <span class="field-label">分类 <em>*</em></span>
+            <select name="categoryId" id="resource-category"></select>
+          </label>
+
+          <div class="field">
+            <span class="field-label">标签</span>
+            <input name="tags" id="resource-tags" type="text" placeholder="例如：设计, 灵感, 待整理（用逗号分隔）" />
+            <div class="tag-preset-section" id="tag-preset-section" hidden>
+              <div class="tag-preset-heading">
+                <span>快捷标签</span>
+                <small id="tag-preset-hint">根据内容类型选择常用标签</small>
+              </div>
+              <div class="tag-preset-options" id="tag-preset-options"></div>
+            </div>
+          </div>
+
+          <p class="form-error" id="resource-form-error" role="alert"></p>
+        </div>
+
+        <footer class="modal-footer">
+          <button class="button button--ghost" data-close-dialog="resource-dialog" type="button">取消</button>
+          <button class="button button--primary" type="submit" id="resource-submit">
+            <svg class="icon"><use href="#icon-check"></use></svg>
+            <span>保存资源</span>
+          </button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal--compact" id="category-dialog">
+      <form class="modal-card" id="category-form" novalidate>
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">整理方式</p>
+            <h2 id="category-dialog-title">新建分类</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="category-dialog" type="button" aria-label="关闭">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <input type="hidden" id="category-id" />
+          <label class="field">
+            <span class="field-label">分类名称 <em>*</em></span>
+            <input id="category-name" type="text" maxlength="20" placeholder="例如：网页设计" required />
+          </label>
+          <fieldset class="color-field">
+            <legend class="field-label">标识颜色</legend>
+            <div class="color-options">
+              <label><input type="radio" name="categoryColor" value="#557d68" checked /><span style="--swatch: #557d68"></span></label>
+              <label><input type="radio" name="categoryColor" value="#ad7a4d" /><span style="--swatch: #ad7a4d"></span></label>
+              <label><input type="radio" name="categoryColor" value="#5d7398" /><span style="--swatch: #5d7398"></span></label>
+              <label><input type="radio" name="categoryColor" value="#a86465" /><span style="--swatch: #a86465"></span></label>
+              <label><input type="radio" name="categoryColor" value="#8a6c97" /><span style="--swatch: #8a6c97"></span></label>
+              <label><input type="radio" name="categoryColor" value="#777b56" /><span style="--swatch: #777b56"></span></label>
+            </div>
+          </fieldset>
+          <p class="form-error" id="category-form-error" role="alert"></p>
+        </div>
+        <footer class="modal-footer">
+          <button class="button button--ghost" data-close-dialog="category-dialog" type="button">取消</button>
+          <button class="button button--primary" type="submit">保存分类</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal--compact" id="category-options-dialog">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">分类设置</p>
+            <h2 id="category-options-title">管理分类</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="category-options-dialog" type="button" aria-label="关闭">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <div class="managed-category-list" id="managed-category-list"></div>
+          <form class="managed-category-form" id="managed-category-form" novalidate>
+            <input id="managed-category-kind" type="hidden" />
+            <label class="field">
+              <span class="field-label">新分类名称</span>
+              <input id="managed-category-name" type="text" maxlength="20" placeholder="输入分类名称" />
+            </label>
+            <div class="managed-category-form-row">
+              <label class="field">
+                <span class="field-label">标识颜色</span>
+                <select id="managed-category-color">
+                  <option value="#557d68">苔绿</option>
+                  <option value="#ad7a4d">陶土</option>
+                  <option value="#5d7398">海盐蓝</option>
+                  <option value="#a86465">莓果红</option>
+                  <option value="#8a6c97">暮霭紫</option>
+                  <option value="#777b56">橄榄</option>
+                </select>
+              </label>
+              <button class="button button--primary" type="submit">
+                <svg class="icon"><use href="#icon-plus"></use></svg>
+                <span>新增分类</span>
+              </button>
+            </div>
+            <p class="form-error" id="managed-category-error" role="alert"></p>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal" id="library-dialog">
+      <form class="modal-card" id="library-form" novalidate>
+        <header class="modal-header">
+          <div class="modal-header-main">
+            <div>
+              <p class="eyebrow">资料库设计</p>
+              <h2 id="library-dialog-title">新建专区</h2>
+            </div>
+          </div>
+          <div class="modal-header-actions">
+            <button class="icon-button modal-back-button" id="library-editor-back" type="button" data-action="back-to-library-manager" aria-label="返回专区管理" hidden>
+              <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+            </button>
+            <button class="icon-button" data-close-dialog="library-dialog" type="button" aria-label="关闭">
+              <svg class="icon"><use href="#icon-close"></use></svg>
+            </button>
+          </div>
+        </header>
+        <div class="modal-body">
+          <input id="library-id" type="hidden" />
+          <div class="library-template-section">
+            <span class="field-label">从模板开始</span>
+            <div class="library-template-grid" id="library-template-options"></div>
+          </div>
+          <label class="field">
+            <span class="field-label">专区名称 <em>*</em></span>
+            <input id="library-name" type="text" maxlength="24" placeholder="例如：文章与阅读" />
+          </label>
+          <label class="field">
+            <span class="field-label">专区说明</span>
+            <textarea id="library-description" rows="2" maxlength="180" placeholder="说明这个专区用来收集什么"></textarea>
+          </label>
+          <div class="field">
+            <span class="field-label">图标</span>
+            <div class="library-icon-options" id="library-icon-options" role="group" aria-label="专区图标"></div>
+          </div>
+          <div class="field">
+            <span class="field-label">标识颜色</span>
+            <div class="library-color-options" id="library-color-options" role="group" aria-label="专区颜色"></div>
+          </div>
+          <div class="field">
+            <span class="field-label">允许添加的内容</span>
+            <div class="library-type-options" id="library-type-options" role="group" aria-label="允许添加的内容类型"></div>
+          </div>
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">默认排版</span>
+              <select id="library-default-layout">
+                <option value="grid">卡片</option>
+                <option value="list">紧凑列表</option>
+                <option value="gallery">画廊</option>
+                <option value="table">表格</option>
+              </select>
+            </label>
+            <label class="setting-toggle-field">
+              <span>
+                <strong>显示账号入口</strong>
+                <small>在此专区添加内容时保留密码快捷入口</small>
+              </span>
+              <input id="library-include-accounts" type="checkbox" />
+            </label>
+          </div>
+          <p class="form-error" id="library-form-error" role="alert"></p>
+        </div>
+        <footer class="modal-footer">
+          <button class="button button--ghost" data-close-dialog="library-dialog" type="button">取消</button>
+          <button class="button button--primary" type="submit">
+            <svg class="icon"><use href="#icon-check"></use></svg>
+            <span id="library-submit-label">创建专区</span>
+          </button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal modal--compact" id="library-manager-dialog">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">专区设置</p>
+            <h2>管理专区</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="library-manager-dialog" type="button" aria-label="关闭">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <div class="library-manager-list" id="library-manager-list"></div>
+        </div>
+        <footer class="modal-footer">
+          <button class="button button--ghost" data-close-dialog="library-manager-dialog" type="button">关闭</button>
+          <button class="button button--primary" type="button" data-action="create-library">
+            <svg class="icon"><use href="#icon-plus"></use></svg>
+            <span>新建专区</span>
+          </button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="modal modal--compact" id="order-dialog">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">导航设置</p>
+            <h2>调整顺序</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="order-dialog" type="button" aria-label="关闭">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body order-dialog-body">
+          <div class="order-mode-switch" role="group" aria-label="排序方式">
+            <button class="order-mode-button" type="button" data-order-mode="position">选择位置</button>
+            <button class="order-mode-button" type="button" data-order-mode="arrows">上下移动</button>
+            <button class="order-mode-button" type="button" data-order-mode="drag">拖拽</button>
+            <button class="order-mode-button" type="button" data-order-mode="name">按名称</button>
+          </div>
+          <p class="order-mode-hint" id="order-mode-hint"></p>
+          <section class="order-section">
+            <h3>资料库导航</h3>
+            <div id="nav-order-list"></div>
+          </section>
+          <section class="order-section">
+            <h3>分类</h3>
+            <div id="category-order-list"></div>
+          </section>
+          <button class="button button--ghost order-name-action" type="button" data-action="sort-order-by-name" hidden>
+            按名称重新排序
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal tutorial-dialog" id="tutorial-dialog">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">新手教程</p>
+            <h2>第一次使用拾集</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="tutorial-dialog" type="button" aria-label="关闭教程">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body tutorial-dialog-body">
+          <div class="tutorial-progress">
+            <span id="tutorial-step-count">1 / 4</span>
+            <div><i id="tutorial-progress-bar"></i></div>
+          </div>
+          <article class="tutorial-dialog-step" id="tutorial-dialog-step"></article>
+        </div>
+        <footer class="modal-footer tutorial-dialog-footer">
+          <button class="button button--ghost" id="tutorial-prev" type="button">上一步</button>
+          <button class="button button--primary" id="tutorial-next" type="button">下一步</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="modal" id="release-notes-dialog">
+      <div class="modal-card">
+        <header class="modal-header">
+          <div class="modal-header-main">
+            <div>
+              <p class="eyebrow">版本记录</p>
+            <h2>版本时间轴</h2>
+            </div>
+          </div>
+          <div class="modal-header-actions">
+            <button class="icon-button modal-back-button" id="release-notes-back" type="button" data-action="back-to-author" aria-label="返回作者介绍" hidden>
+              <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+            </button>
+            <button class="icon-button" data-close-dialog="release-notes-dialog" type="button" aria-label="关闭">
+              <svg class="icon"><use href="#icon-close"></use></svg>
+            </button>
+          </div>
+        </header>
+        <div class="modal-body release-notes-body">
+          <section class="release-hero">
+            <div class="release-stage">
+              <span>第二测试版</span>
+              <strong>非正式发布</strong>
+            </div>
+            <p class="eyebrow">LOCAL FILE INDEX</p>
+            <h3>拾集 · 第二测试版 <span class="release-version-number">1.1.0</span></h3>
+            <p>以“索引电脑文件、快速找回路径”为核心重新梳理产品与界面，同时完成自定义专区、个性化、系统托盘和多级窗口导航等升级。</p>
+            <div class="release-meta-grid">
+              <div><span>版本号</span><strong>1.1.0</strong></div>
+              <div><span>发布日期</span><strong>2026 年 11 月 7 日</strong></div>
+              <div><span>版本状态</span><strong>内部测试 / 自用</strong></div>
+              <div><span>运行平台</span><strong>Windows 10 / 11 x64</strong></div>
+            </div>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>01</span>
+              <div><p class="eyebrow">OVERVIEW</p><h3>版本介绍</h3></div>
+            </div>
+            <p>拾集首先是一套本地文件索引工具：选择电脑中的文件后，只记录文件名、大小、更新时间和完整路径，不复制原文件，并通过名称、说明、标签和路径搜索快速定位。</p>
+            <p>在文件索引之外，拾集仍保留链接、笔记、账号、Minecraft 和自定义专区的整理能力，但整体结构、默认入口和介绍文案都已改为“文件优先”。</p>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>02</span>
+              <div><p class="eyebrow">ADDED</p><h3>增加了什么</h3></div>
+            </div>
+            <div class="release-feature-grid">
+              <article><strong>独立文件索引页</strong><p>集中显示所有已索引文件、路径数量、文件总量和检索说明。</p></article>
+              <article><strong>路径优先展示</strong><p>文件卡片和表格优先显示本地路径，详情页支持复制路径、打开文件和定位目录。</p></article>
+              <article><strong>自定义专区</strong><p>可创建文章、下载、灵感或空白专区，并配置图标、颜色、内容类型和默认排版。</p></article>
+              <article><strong>全部资源专区筛选</strong><p>在全部资源中直接切换通用资源库、我的世界和任意自定义专区。</p></article>
+              <article><strong>快捷键设置</strong><p>搜索、新建、切换外观、打开账号和打开设置均可录制自定义快捷键。</p></article>
+              <article><strong>窗口与托盘</strong><p>详情支持窗口式或侧边式；关闭窗口可退出或收起到系统托盘。</p></article>
+              <article><strong>个性化</strong><p>新增七套完整主题色、界面字号、侧栏字号和多种显示偏好。</p></article>
+              <article><strong>多级返回与恢复</strong><p>编辑资源、查看版本和编辑专区可返回上一窗口；支持恢复首次启动状态。</p></article>
+            </div>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>03</span>
+              <div><p class="eyebrow">OPTIMIZED</p><h3>优化了什么</h3></div>
+            </div>
+            <ul class="release-limitations">
+              <li>搜索改为防抖和局部刷新，资源统计与筛选用单次遍历，长列表减少离屏绘制。</li>
+              <li>移除内容区固定最大宽度，资源网格自动铺满超宽屏并消除尾部空列。</li>
+              <li>提高文件表格字号，重新调整路径、标签、日期和表头的可读性。</li>
+              <li>表单下拉框、日期选择器和分类颜色菜单统一为软件内浮层样式，并解决遮挡问题。</li>
+              <li>桌面版启用静态资源缓存和 V8 代码缓存，改善后续启动速度。</li>
+            </ul>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>04</span>
+              <div><p class="eyebrow">CHANGED</p><h3>改动了什么</h3></div>
+            </div>
+            <ul class="release-limitations">
+              <li>产品定位从“私人资源管理器”改为“本地文件索引与个人资源管理”。</li>
+              <li>左侧边栏按资料库、专区、账号和分类重新分组，并加入文件索引一级入口。</li>
+              <li>“全部资源”现在包含通用资源库、Minecraft 和所有自定义专区。</li>
+              <li>资源详情默认使用窗口式展示，同时保留可切换的侧边式布局。</li>
+              <li>应用内介绍、欢迎页、关于页、桌面说明和版本记录全部改为文件索引用语。</li>
+            </ul>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>05</span>
+              <div><p class="eyebrow">REMOVED</p><h3>删除了什么</h3></div>
+            </div>
+            <ul class="release-limitations">
+              <li>删除详情窗口左上角的关闭布局，关闭按钮统一移动到右上角。</li>
+              <li>删除表单中直接弹出的系统原生下拉框和原生日期弹层。</li>
+              <li>删除作者页多余说明文字、生日信息和经验条背景卡片。</li>
+              <li>删除宽屏下不再使用的内容区固定宽度与空网格列。</li>
+              <li>删除“最小化到任务栏”表述，统一为“收起到系统托盘”。</li>
+            </ul>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>06</span>
+              <div><p class="eyebrow">SCREENSHOTS</p><h3>版本截图</h3></div>
+            </div>
+            <div class="release-screenshot-grid">
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-file-index.png" data-image-alt="本地文件索引" data-image-caption="文件索引与路径统计">
+                  <img src="./assets/release/1.1.0-file-index.png" alt="本地文件索引" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>文件索引与路径统计</figcaption>
+              </figure>
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-libraries.png" data-image-alt="自定义专区" data-image-caption="自定义专区与内容类型">
+                  <img src="./assets/release/1.1.0-libraries.png" alt="自定义专区" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>自定义专区与内容类型</figcaption>
+              </figure>
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-personalization.png" data-image-alt="个性化设置" data-image-caption="主题、字号与显示方式">
+                  <img src="./assets/release/1.1.0-personalization.png" alt="个性化设置" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>主题、字号与显示方式</figcaption>
+              </figure>
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-detail.png" data-image-alt="窗口式详情" data-image-caption="窗口式资源详情">
+                  <img src="./assets/release/1.1.0-detail.png" alt="窗口式详情" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>窗口式资源详情</figcaption>
+              </figure>
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-author.png" data-image-alt="作者介绍" data-image-caption="作者信息与版本">
+                  <img src="./assets/release/1.1.0-author.png" alt="作者介绍" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>作者信息与版本</figcaption>
+              </figure>
+              <figure>
+                <button class="release-screenshot-button" type="button" data-action="open-image-preview" data-image-src="./assets/release/1.1.0-table.png" data-image-alt="文件表格视图" data-image-caption="高清文件表格">
+                  <img src="./assets/release/1.1.0-table.png" alt="文件表格视图" loading="lazy" />
+                  <span>点击放大</span>
+                </button>
+                <figcaption>高清文件表格</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="release-section">
+            <div class="release-section-head">
+              <span>07</span>
+              <div><p class="eyebrow">NOTES</p><h3>测试版说明</h3></div>
+            </div>
+            <ul class="release-limitations">
+              <li>该版本用于个人自测与日常试用，不代表最终正式发布品质。</li>
+              <li>账号密码保存在本机，没有云端同步；多人共用电脑时应谨慎保存账号。</li>
+              <li>电脑版文件索引依赖原文件位置，移动或删除原文件后路径会失效。</li>
+              <li>网页版仍将小文件保存在浏览器数据库，单文件上限为 50 MB。</li>
+              <li>网站图标抓取可能受目标站点限制或网络环境影响，可改用内置图标或本地上传。</li>
+              <li>后续正式版本将继续完善界面细节、稳定性、批量整理和跨设备迁移能力。</li>
+            </ul>
+          </section>
+
+          <div class="release-footer-note">
+            <strong>感谢使用拾集测试版</strong>
+            <span>作者：YinL. · QQ：3551522664 · 邮箱：Threebooks@163.com</span>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal modal--compact" id="account-dialog">
+      <form class="modal-card" id="account-form" novalidate>
+        <header class="modal-header">
+          <div>
+            <p class="eyebrow">账号保险箱</p>
+            <h2 id="account-dialog-title">添加账号</h2>
+          </div>
+          <button class="icon-button" data-close-dialog="account-dialog" type="button" aria-label="关闭">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <input type="hidden" id="account-id" />
+          <label class="field">
+            <span class="field-label">平台或网站名称 <em>*</em></span>
+            <input id="account-platform" type="text" maxlength="60" placeholder="例如：GitHub、哔哩哔哩、Steam" autocomplete="off" />
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span class="field-label">账号或邮箱 <em>*</em></span>
+              <input id="account-username" type="text" maxlength="160" placeholder="你的登录账号" autocomplete="off" />
+            </label>
+            <label class="field">
+              <span class="field-label">账号分类</span>
+              <select id="account-category">
+                <option value="social">社交</option>
+                <option value="game">游戏</option>
+                <option value="media">影音</option>
+                <option value="work">工作</option>
+                <option value="shopping">购物</option>
+                <option value="other">其他</option>
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span class="field-label">密码 <em>*</em></span>
+            <div class="input-with-actions">
+              <input id="account-password" type="password" maxlength="256" placeholder="输入或生成一个密码" autocomplete="new-password" />
+              <button class="input-action" type="button" data-action="toggle-account-form-password" aria-label="显示或隐藏密码">
+                <svg class="icon"><use href="#icon-eye"></use></svg>
+              </button>
+              <button class="input-action" type="button" data-action="generate-account-password" aria-label="生成随机密码">
+                <svg class="icon"><use href="#icon-refresh"></use></svg>
+              </button>
+            </div>
+          </label>
+          <label class="field">
+            <span class="field-label">登录网址</span>
+            <input id="account-website" type="text" maxlength="500" placeholder="https://example.com（可选）" />
+          </label>
+          <div class="field account-icon-field">
+            <div class="account-icon-heading">
+              <span class="field-label">账号图标</span>
+              <label class="icon-auto-toggle">
+                <input id="account-icon-auto" type="checkbox" checked />
+                <span>自动获取网站图标</span>
+              </label>
+            </div>
+            <input id="account-icon-url" type="hidden" />
+            <input id="account-icon-builtin" type="hidden" />
+            <input id="account-icon-mode" type="hidden" value="auto" />
+            <div class="account-icon-picker">
+              <span class="account-icon-preview">
+                <img id="account-icon-preview-image" alt="" />
+                <svg class="icon account-icon-preview-glyph" id="account-icon-preview-glyph"><use href="#icon-link"></use></svg>
+                <span id="account-icon-preview-fallback">站</span>
+              </span>
+              <div class="account-icon-options" role="group" aria-label="内置账号图标">
+                <button class="account-icon-option" type="button" data-account-icon-choice="link" aria-label="链接图标"><svg class="icon"><use href="#icon-link"></use></svg></button>
+                <button class="account-icon-option" type="button" data-account-icon-choice="key" aria-label="钥匙图标"><svg class="icon"><use href="#icon-key"></use></svg></button>
+                <button class="account-icon-option" type="button" data-account-icon-choice="user" aria-label="用户图标"><svg class="icon"><use href="#icon-user"></use></svg></button>
+                <button class="account-icon-option" type="button" data-account-icon-choice="star" aria-label="星标图标"><svg class="icon"><use href="#icon-star"></use></svg></button>
+                <button class="account-icon-option" type="button" data-account-icon-choice="cube" aria-label="方块图标"><svg class="icon"><use href="#icon-cube"></use></svg></button>
+                <button class="account-icon-option" type="button" data-account-icon-choice="note" aria-label="笔记图标"><svg class="icon"><use href="#icon-note"></use></svg></button>
+              </div>
+              <label class="button button--ghost account-icon-upload">
+                <svg class="icon"><use href="#icon-upload"></use></svg>
+                <span>自定义</span>
+                <input id="account-icon-file" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden />
+              </label>
+            </div>
+            <div class="account-icon-footer">
+              <button class="button button--quiet" type="button" data-action="clear-account-icon">不使用</button>
+              <span class="account-icon-feedback" id="account-icon-feedback">
+                <span id="account-icon-status">可自动获取、自定义上传或选择内置图标</span>
+              </span>
+            </div>
+          </div>
+          <label class="field">
+            <span class="field-label">备注</span>
+            <textarea id="account-note" rows="3" maxlength="600" placeholder="安全提示、绑定邮箱或其他说明"></textarea>
+          </label>
+          <p class="form-error" id="account-form-error" role="alert"></p>
+        </div>
+        <footer class="modal-footer">
+          <button class="button button--ghost" data-close-dialog="account-dialog" type="button">取消</button>
+          <button class="button button--primary" type="submit">保存到保险箱</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal welcome-dialog" id="welcome-dialog">
+      <div class="modal-card">
+        <button class="icon-button welcome-close" data-close-dialog="welcome-dialog" type="button" aria-label="关闭介绍">
+          <svg class="icon"><use href="#icon-close"></use></svg>
+        </button>
+        <div class="welcome-body">
+          <div class="welcome-brand">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="welcome-version">第二测试版 1.1.0</span>
+          </div>
+          <p class="eyebrow">欢迎使用</p>
+          <h2>先从第一个文件开始。</h2>
+          <p class="welcome-intro">先把电脑里的文件索引进来，拾集会记录名称、大小和完整路径。链接、笔记与账号可以作为附加内容一起管理。</p>
+          <div class="welcome-features">
+            <div>
+              <svg class="icon"><use href="#icon-plus"></use></svg>
+              <span><strong>第一步</strong>选择本机文件</span>
+            </div>
+            <div>
+              <svg class="icon"><use href="#icon-layers"></use></svg>
+              <span><strong>第二步</strong>填写检索信息</span>
+            </div>
+            <div>
+              <svg class="icon"><use href="#icon-check"></use></svg>
+              <span><strong>第三步</strong>保存文件路径索引</span>
+            </div>
+          </div>
+          <div class="welcome-author">软件与网页设计 · <strong>YinL.</strong></div>
+        </div>
+        <div class="welcome-actions">
+          <button class="button button--ghost" type="button" data-action="dismiss-welcome">直接开始</button>
+          <button class="button button--primary" type="button" data-action="start-first-resource">
+            <svg class="icon"><use href="#icon-plus"></use></svg>
+            <span>添加第一条资源</span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="modal author-dialog" id="author-dialog">
+      <div class="modal-card">
+        <button class="icon-button welcome-close" data-close-dialog="author-dialog" type="button" aria-label="关闭作者介绍">
+          <svg class="icon"><use href="#icon-close"></use></svg>
+        </button>
+        <div class="author-profile">
+          <div class="author-identity">
+            <div class="author-profile-avatar">
+              <img src="./assets/author-avatar.jpg" alt="YinL. 的头像" />
+            </div>
+            <div class="author-heading">
+              <p class="eyebrow">设计与开发</p>
+              <h2>YinL.</h2>
+            </div>
+          </div>
+          <p class="author-bio">拾集的作者，负责产品的界面设计、交互体验与功能开发。</p>
+          <section class="author-level-widget" aria-label="作者年龄等级">
+            <div class="author-level-line">
+              <span class="author-level-label">LV. <strong id="author-level">20</strong></span>
+              <span class="author-level-percent" id="author-level-percent">0%</span>
+            </div>
+            <div class="author-xp-track" id="author-xp-track" role="progressbar" aria-label="距离下一级的进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span id="author-xp-fill"></span>
+            </div>
+          </section>
+          <div class="author-contact">
+            <div class="author-contact-item"><span>QQ：</span><strong>3551522664</strong></div>
+            <div class="author-contact-item"><span>邮箱：</span><strong>Threebooks@163.com</strong></div>
+          </div>
+          <div class="author-profile-actions">
+            <div class="author-current-version">
+              <span>当前版本</span>
+              <strong>第二测试版 <b>1.1.0</b></strong>
+            </div>
+            <button class="button button--ghost" type="button" data-action="author-open-release-notes">
+              <svg class="icon"><use href="#icon-clock"></use></svg>
+              <span>查看版本</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog class="detail-dialog" id="detail-dialog">
+      <div class="detail-panel">
+        <button class="icon-button detail-close" data-close-dialog="detail-dialog" type="button" aria-label="关闭详情">
+          <svg class="icon"><use href="#icon-close"></use></svg>
+        </button>
+        <div id="detail-content"></div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <svg class="icon"><use href="#icon-check"></use></svg>
+      <span id="toast-text"></span>
+    </div>
+
+    <dialog class="image-preview-dialog" id="image-preview-dialog">
+      <div class="image-preview-card">
+        <header class="image-preview-header">
+          <div>
+            <p class="eyebrow">版本截图</p>
+            <h2 id="image-preview-caption">预览</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog="image-preview-dialog" aria-label="关闭图片预览">
+            <svg class="icon"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="image-preview-stage">
+          <img id="image-preview-image" alt="" />
+        </div>
+      </div>
+    </dialog>
+
+    <input type="file" id="import-input" accept="application/json,.json" hidden />
+    <script src="./js/store.js?v=card-details-1.2.14"></script>
+    <script src="./js/app.js?v=card-details-1.2.14"></script>
+    <script src="./js/studio.js?v=card-details-1.2.14"></script>
+    <script src="./js/library.js?v=card-details-1.2.14"></script>
+  </body>
+</html>
